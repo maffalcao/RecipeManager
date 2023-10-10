@@ -4,15 +4,12 @@ import { ShoppingListService } from './shopping-list.service';
 
 @Component({
   selector: 'app-shopping-list',
-  templateUrl: './shopping-list.component.html',
-  styleUrls: ['./shopping-list.component.css']
+  templateUrl: './shopping-list.component.html'  
 })
 export class ShoppingListComponent implements OnInit {
   ingredients: Ingredient[]
 
-  constructor(private shoppingListService: ShoppingListService) {
-    
-  }  
+  constructor(private shoppingListService: ShoppingListService) { }  
 
   ngOnInit(): void {    
     this.ingredients = this.shoppingListService.getIngredients();  

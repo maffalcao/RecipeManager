@@ -8,6 +8,5 @@ export class DropdownDirective {
 
     @HostListener('click') toogleOpen() {
         this.isOpen = !this.isOpen
-    }
-    
+    }    
 }

@@ -4,8 +4,7 @@ import { RecipeService } from '../recipe.service';
 
 @Component({
   selector: 'app-recipe-detail',
-  templateUrl: './recipe-detail.component.html',
-  styleUrls: ['./recipe-detail.component.css']
+  templateUrl: './recipe-detail.component.html'  
 })
 export class RecipeDetailComponent {
   @Input() recipe: Recipe
@@ -15,7 +14,4 @@ export class RecipeDetailComponent {
   OnAddToShoppingList() {
     this.recipeService.addIngredientsToShoppingList(this.recipe.ingredients)
   }
-
-  
-
 }
