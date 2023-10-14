@@ -4,15 +4,14 @@ import { Ingredient } from "../shared/ingredient.model";
 import { ShoppingListService } from "../shopping-list/shopping-list.service";
 
 @Injectable()
-export class RecipeService {
-    recipeSelected = new EventEmitter<Recipe>()
+export class RecipeService {    
 
     private recipes: Recipe[] = [
         new Recipe(
             1,
             'A test recipt', 
             'This is simply a test 1', 
-            'https://images.twinkl.co.uk/tw1n/image/private/t_630/image_repo/4e/7b/au-t2-e-5093-pancake-recipe-english_ver_5.jpg',
+            'https://www.allrecipes.com/thmb/5JVfA7MxfTUPfRerQMdF-nGKsLY=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/25473-the-perfect-basic-burger-DDMFS-4x3-56eaba3833fd4a26a82755bcd0be0c54.jpg',
             [
                 new Ingredient('Meat', 1),
                 new Ingredient('French Fries', 20),
@@ -22,7 +21,7 @@ export class RecipeService {
             2,
             'A test recipt', 
             'This is simply a test 2', 
-            'https://images.twinkl.co.uk/tw1n/image/private/t_630/image_repo/4e/7b/au-t2-e-5093-pancake-recipe-english_ver_5.jpg',
+            'https://bakeandcakegourmet.com.br/uploads/site/receitas/macarrao-com-sardinha-3-qdu2sdl2.jpg',
             [
                 new Ingredient('Apple', 110),
                 new Ingredient('Bananas', 1),
@@ -30,9 +29,7 @@ export class RecipeService {
         )
     ]
 
-    constructor(private shoppingListService: ShoppingListService) {
-
-    }
+    constructor(private shoppingListService: ShoppingListService) {}
 
     getRecipe(id: number) {
         const server = this.recipes.find(
