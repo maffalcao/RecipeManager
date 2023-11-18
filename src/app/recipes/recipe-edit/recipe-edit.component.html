@@ -3,8 +3,8 @@
         <form [formGroup]="recipeForm" (submit)="onSubmit()">
             <div class="row">
                 <div class="col-x-12">
-                    <button type="submit" class="btn btn-success spaced-btn">Save</button>
-                    <button type="submit" class="btn btn-danger">Cancel</button>
+                    <button type="submit" class="btn btn-success spaced-btn" [disabled]="recipeForm.invalid">Save</button>
+                    <button type="submit" class="btn btn-danger" (click)="onCancel()">Cancel</button>
                 </div>
             </div>
             <div class="row">
@@ -71,12 +71,12 @@
                                 formControlName="amount">
                         </div>
                         <div class="col-xs-2">
-                            <button class="btn btn-danger">Delete</button>
+                            <button type="button" class="btn btn-danger" (click)="onDeleteIngredient(i)">X</button>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-xs-12" style="margin-top: 10px;">
-                            <button type="button" class="btn btn-success" (click)="addIngredient()">Add ingredient</button>
+                            <button type="button" class="btn btn-success" (click)="addIngredient()">Add new ingredient</button>
                         </div>
                     </div>                    
                 </div>
