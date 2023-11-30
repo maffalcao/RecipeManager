@@ -8,28 +8,30 @@ import { Subject } from "rxjs";
 export class RecipeService {    
     recipesUpdatedSubject = new Subject<Recipe[]>()
 
-    private recipes: Recipe[] = [
-        new Recipe(
-            0,
-            'A test recipt', 
-            'This is simply a test 1', 
-            'https://www.allrecipes.com/thmb/5JVfA7MxfTUPfRerQMdF-nGKsLY=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/25473-the-perfect-basic-burger-DDMFS-4x3-56eaba3833fd4a26a82755bcd0be0c54.jpg',
-            [
-                new Ingredient('Meat', 1),
-                new Ingredient('French Fries', 20),
-            ]
-        ),
-        new Recipe(
-            1,
-            'A test recipt', 
-            'This is simply a test 2', 
-            'https://bakeandcakegourmet.com.br/uploads/site/receitas/macarrao-com-sardinha-3-qdu2sdl2.jpg',
-            [
-                new Ingredient('Apple', 110),
-                new Ingredient('Bananas', 1),
-            ]
-        )
-    ]
+    // private recipes: Recipe[] = [
+    //     new Recipe(
+    //         0,
+    //         'A test recipt', 
+    //         'This is simply a test 1', 
+    //         'https://www.allrecipes.com/thmb/5JVfA7MxfTUPfRerQMdF-nGKsLY=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/25473-the-perfect-basic-burger-DDMFS-4x3-56eaba3833fd4a26a82755bcd0be0c54.jpg',
+    //         [
+    //             new Ingredient('Meat', 1),
+    //             new Ingredient('French Fries', 20),
+    //         ]
+    //     ),
+    //     new Recipe(
+    //         1,
+    //         'A test recipt', 
+    //         'This is simply a test 2', 
+    //         'https://bakeandcakegourmet.com.br/uploads/site/receitas/macarrao-com-sardinha-3-qdu2sdl2.jpg',
+    //         [
+    //             new Ingredient('Apple', 110),
+    //             new Ingredient('Bananas', 1),
+    //         ]
+    //     )
+    // ]
+
+    private recipes: Recipe[] = []
 
     constructor(private shoppingListService: ShoppingListService) {}
 
@@ -56,6 +58,11 @@ export class RecipeService {
         this.recipes.push(recipe)
         this.recipesUpdatedSubject.next(this.getRecipes())
         return recipe
+    }
+
+    setRecipes(recipes: Recipe[]) {
+        this.recipes = recipes
+        this.recipesUpdatedSubject.next(this.getRecipes())        
     }
 
     deleteRecipe(id: number) {
