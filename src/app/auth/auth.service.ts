@@ -17,7 +17,7 @@ export interface AuthResponseData {
 
 @Injectable({providedIn: 'root'})
 export class AuthService {
-    userSubject = new BehaviorSubject<User>(null)    
+    userSubject = new BehaviorSubject<User>(null)        
 
     fireBaseApiKey = environment.firebaseAPIKey;
     signupUrl = `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${this.fireBaseApiKey}`
