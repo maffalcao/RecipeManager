@@ -2,6 +2,7 @@ import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { BehaviorSubject, Subject, catchError, tap, throwError } from "rxjs";
 import { User } from "./user.model";
+import { environment } from "src/environments/environment.prod";
 
 export interface AuthResponseData {
     kind: string,
@@ -18,7 +19,7 @@ export interface AuthResponseData {
 export class AuthService {
     userSubject = new BehaviorSubject<User>(null)    
 
-    fireBaseApiKey = 'AIzaSyDMf4XIETY1Zh3qb9dtZ9Rav0oiN07Js6E'
+    fireBaseApiKey = environment.firebaseAPIKey;
     signupUrl = `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${this.fireBaseApiKey}`
     signinUrl = `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${this.fireBaseApiKey}`
 
