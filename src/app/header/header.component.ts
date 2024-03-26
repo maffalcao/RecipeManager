@@ -1,44 +1,47 @@
-import { AuthService } from './../auth/auth.service';
-import { RecipeService } from './../recipes/recipe.service';
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { DataStorageService } from '../shared/data-storage-service';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 
+import { AuthService } from '../auth/auth.service';
+import { DataStorageService } from '../shared/data-storage-service';
+import { RecipeService } from '../recipes/recipe.service';
 
 @Component({
   selector: 'app-header',
-  templateUrl: './header.component.html'  
+  templateUrl: './header.component.html'
 })
-export class HeaderComponent implements OnInit, OnDestroy {  
-  isAuthenticate = false
-  private userSubject: Subscription
-  
-  
+export class HeaderComponent implements OnInit, OnDestroy {
+  isAuthenticated = false;
+  private userSub: Subscription;
+
   constructor(
-    private dataStorageService: DataStorageService, 
-    private recipeService: RecipeService,
-    private authService: AuthService) {}
-  
-  
-  ngOnInit(): void {
-    //this.dataStorageService.fetchRecipes().subscribe()
+    private dataStorageService: DataStorageService,
+    private authService: AuthService
+    
+  ) {}
 
-    this.userSubject = this.authService.userSubject.subscribe(user => {
-      this.isAuthenticate = !!user
-    })
+  ngOnInit() {
+    this.userSub = this.authService.user.subscribe(user => {
+      this.isAuthenticated = !!user;
+
+      if(this.isAuthenticated)
+        this.dataStorageService.fetchRecipes()
+     
+    });
   }
 
-  onSaveData() {    
-    this.dataStorageService.storeRecipes()
+  onSaveData() {
+    this.dataStorageService.storeRecipes();
   }
 
-  onFechData() {
-    if(this.recipeService.getRecipes().length === 0)
-      this.dataStorageService.fetchRecipes().subscribe()
+  onFetchData() {
+    this.dataStorageService.fetchRecipes().subscribe();
   }
 
-  ngOnDestroy(): void {
-    this.userSubject.unsubscribe()
+  onLogout() {
+    this.authService.logout();
   }
 
+  ngOnDestroy() {
+    this.userSub.unsubscribe();
+  }
 }
